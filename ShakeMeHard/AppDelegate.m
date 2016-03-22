@@ -70,7 +70,7 @@
 }
 
 static const BOOL HIGH_POWER = YES;
-static const BOOL ONBOARD_RECORDED_ACC = YES;
+static const BOOL ONBOARD_RECORDED_ACC = NO;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -98,7 +98,7 @@ static const BOOL ONBOARD_RECORDED_ACC = YES;
         }
         
         if (ONBOARD_RECORDED_ACC) {
-            [self startRecordingAccelerations];
+            [self startOnboardRecordingOfAccelerations];
         } else {
             [self startAccelerationUpdates];
 
@@ -121,7 +121,7 @@ static const BOOL ONBOARD_RECORDED_ACC = YES;
         }
         
         if (ONBOARD_RECORDED_ACC) {
-            [self startRecordingAccelerations];
+            [self startOnboardRecordingOfAccelerations];
         } else {
             [self startAccelerationUpdates];
             
@@ -140,17 +140,12 @@ static const BOOL ONBOARD_RECORDED_ACC = YES;
 #pragma mark
 #pragma mark Location Services
 
-static const NSInteger secondsIn24Hours = 60*60*24;
 static const NSInteger secondsIn12Hours = 60*60*12;
 
 -(void)newLocationObtained
 {
-    _numberOfLocations += 1;
-    if (_numberOfLocations > 10) {
-        _numberOfLocations = 0;
-        NSString *notificationText = @"Location Found";
-        [self scheduleNotificationWithString:notificationText];
-    }
+    NSString *notificationText = @"Location Found";
+    [self scheduleNotificationWithString:notificationText];
     
     if (ONBOARD_RECORDED_ACC) {
         [self processOnboardRecordedAccelerations];
@@ -202,18 +197,14 @@ static const NSInteger secondsIn12Hours = 60*60*12;
      {
          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                         ^{
-                            _numberOfAccelerations += 1;
-                            if (_numberOfAccelerations > 600) {
-                                _numberOfAccelerations = 0;
-                                NSString *notificationText = [NSString stringWithFormat:@"Acceleration=%@",[data description]];
-                                [self scheduleNotificationWithString:notificationText];
-                            }
+                            NSString *notificationText = [NSString stringWithFormat:@"Acceleration=%@",[data description]];
+                            [self scheduleNotificationWithString:notificationText];
                         });
      }
      ];
 }
 
--(void)startRecordingAccelerations
+-(void)startOnboardRecordingOfAccelerations
 {
     self.sensorRecorder = [[CMSensorRecorder alloc] init];
     [self.sensorRecorder recordAccelerometerForDuration:(secondsIn12Hours)];
@@ -221,17 +212,17 @@ static const NSInteger secondsIn12Hours = 60*60*12;
 
 -(void)processOnboardRecordedAccelerations
 {
-    //
-    // See what sensor data we got!
-    //
-    if (self.sensorRecorder) {
-        NSDate *now = [NSDate date];
-        NSDate *yesterday = [now dateByAddingTimeInterval:-1*secondsIn24Hours];
-        NSDate *tomorrow = [now dateByAddingTimeInterval:secondsIn24Hours];
-        
-        CMSensorDataList *list = [self.sensorRecorder accelerometerDataFromDate:yesterday
-                                                                         toDate:tomorrow];
-        
+    if (self.sensorRecorder == nil) {
+        self.sensorRecorder = [[CMSensorRecorder alloc] init];
+    }
+    
+    NSDate *now = [NSDate date];
+    NSDate *yesterday = [now dateByAddingTimeInterval:(-1*secondsIn12Hours / 2)]; // 6 hours
+    
+    CMSensorDataList *list = [self.sensorRecorder accelerometerDataFromDate:yesterday
+                                                                     toDate:now];
+    
+    if (list) {
         NSInteger count = 0;
         for (CMRecordedAccelerometerData* data in list) {
             count = count + 1;
@@ -240,6 +231,12 @@ static const NSInteger secondsIn12Hours = 60*60*12;
         
         NSString *notificationText = [NSString stringWithFormat:@"%i accelerations found", (int) count];
         [self scheduleNotificationWithString:notificationText];
+        
+    } else {
+        
+        NSString *notificationText = @"No accelerations returned";
+        [self scheduleNotificationWithString:notificationText];
+        
     }
 }
 
