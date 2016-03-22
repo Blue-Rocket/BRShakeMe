@@ -69,6 +69,9 @@
     //
 }
 
+static const BOOL HIGH_POWER = YES;
+static const BOOL ONBOARD_RECORDED_ACC = YES;
+
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     //
@@ -87,11 +90,19 @@
         [self scheduleNotificationWithString:notificationText];
         
         [self.currentLocationFinder tearDownLocationResources];
-//        [self.currentLocationFinder startupBackgroundHighPower];
-        [self.currentLocationFinder startupBackgroundLowPower];
+
+        if (HIGH_POWER) {
+            [self.currentLocationFinder startupBackgroundHighPower];
+        } else {
+            [self.currentLocationFinder startupBackgroundLowPower];
+        }
         
-        [self startAccelerationUpdates];
-//        [self startRecordingAccelerations];
+        if (ONBOARD_RECORDED_ACC) {
+            [self startRecordingAccelerations];
+        } else {
+            [self startAccelerationUpdates];
+
+        }
         
     } else if (appState == UIApplicationStateBackground) {
         //
@@ -101,11 +112,20 @@
         [self scheduleNotificationWithString:notificationText];
         
         [self.currentLocationFinder tearDownLocationResources];
-//        [self.currentLocationFinder startupBackgroundHighPower];
-        [self.currentLocationFinder startupBackgroundLowPower];
+        [self.currentLocationFinder tearDownLocationResources];
         
-        [self startAccelerationUpdates];
-//        [self startRecordingAccelerations];
+        if (HIGH_POWER) {
+            [self.currentLocationFinder startupBackgroundHighPower];
+        } else {
+            [self.currentLocationFinder startupBackgroundLowPower];
+        }
+        
+        if (ONBOARD_RECORDED_ACC) {
+            [self startRecordingAccelerations];
+        } else {
+            [self startAccelerationUpdates];
+            
+        }
     }
 }
 
@@ -130,8 +150,11 @@ static const NSInteger secondsIn12Hours = 60*60*12;
         _numberOfLocations = 0;
         NSString *notificationText = @"Location Found";
         [self scheduleNotificationWithString:notificationText];
-        
-        [self processRecordedAccelerations];
+    }
+    
+    if (ONBOARD_RECORDED_ACC) {
+        [self processOnboardRecordedAccelerations];
+    } else {
     }
 }
 
@@ -177,7 +200,7 @@ static const NSInteger secondsIn12Hours = 60*60*12;
     [self.motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init]
                                              withHandler:^(CMAccelerometerData *data, NSError *error)
      {
-         dispatch_async(dispatch_get_main_queue(),
+         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                         ^{
                             _numberOfAccelerations += 1;
                             if (_numberOfAccelerations > 600) {
@@ -193,28 +216,30 @@ static const NSInteger secondsIn12Hours = 60*60*12;
 -(void)startRecordingAccelerations
 {
     self.sensorRecorder = [[CMSensorRecorder alloc] init];
-//    [self.sensorRecorder recordAccelerometerForDuration:(secondsIn12Hours)];
+    [self.sensorRecorder recordAccelerometerForDuration:(secondsIn12Hours)];
 }
 
--(void)processRecordedAccelerations
+-(void)processOnboardRecordedAccelerations
 {
     //
     // See what sensor data we got!
     //
     if (self.sensorRecorder) {
-//        NSDate *now = [NSDate date];
-//        NSDate *yesterday = [now dateByAddingTimeInterval:-1*secondsIn24Hours];
-//        NSDate *tomorrow = [now dateByAddingTimeInterval:secondsIn24Hours];
-//        CMSensorDataList *list = [self.sensorRecorder accelerometerDataFromDate:yesterday
-//                                                                         toDate:tomorrow];
+        NSDate *now = [NSDate date];
+        NSDate *yesterday = [now dateByAddingTimeInterval:-1*secondsIn24Hours];
+        NSDate *tomorrow = [now dateByAddingTimeInterval:secondsIn24Hours];
         
-//        NSInteger count = 0;
-//        for (CMRecordedAccelerometerData* data in list) {
-//            count = count + 1;
-//            NSLog(@"%@",[data description]);
-//        }
-//        NSString *notificationText = [NSString stringWithFormat:@"%i accelerations found", (int) count];
-//        [self scheduleNotificationWithString:notificationText];
+        CMSensorDataList *list = [self.sensorRecorder accelerometerDataFromDate:yesterday
+                                                                         toDate:tomorrow];
+        
+        NSInteger count = 0;
+        for (CMRecordedAccelerometerData* data in list) {
+            count = count + 1;
+            NSLog(@"%@",[data description]);
+        }
+        
+        NSString *notificationText = [NSString stringWithFormat:@"%i accelerations found", (int) count];
+        [self scheduleNotificationWithString:notificationText];
     }
 }
 
