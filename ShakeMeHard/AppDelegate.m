@@ -197,8 +197,12 @@ static const NSInteger secondsIn12Hours = 60*60*12;
      {
          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                         ^{
-                            NSString *notificationText = [NSString stringWithFormat:@"Acceleration=%@",[data description]];
-                            [self scheduleNotificationWithString:notificationText];
+                            _numberOfAccelerations += 1;
+                            if (_numberOfLocations == 20) {
+                                _numberOfLocations = 0;
+                                NSString *notificationText = [NSString stringWithFormat:@"Acceleration=%@",[data description]];
+                                [self scheduleNotificationWithString:notificationText];
+                            }
                         });
      }
      ];
