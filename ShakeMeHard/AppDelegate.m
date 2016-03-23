@@ -30,8 +30,6 @@ static const BOOL USE_ONBOARD_RECORDED_ACC = NO; // WatchOS only, but interestin
     // 1. First initalization before restoring UI state
     //
 
-    [self initializeCurrentLocationFinder];
-
     return YES;
 }
 
@@ -42,29 +40,27 @@ static const BOOL USE_ONBOARD_RECORDED_ACC = NO; // WatchOS only, but interestin
     //
 
     if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
-        
         NSString *notificationText = @"Terminated to Background";
         [self scheduleNotificationWithString:notificationText];
-        
-        [self initializeCurrentLocationFinder];
-        
-        if (USE_HIGH_POWER_LOCATIONS) {
-            [self.currentLocationFinder startupBackgroundHighPower];
-        } else {
-            [self.currentLocationFinder startupBackgroundLowPower];
-        }
-        
-        if (USE_ONBOARD_RECORDED_ACC) {
-            [self startOnboardRecordingOfAccelerations];
-        } else {
-            [self startAccelerationUpdates];
-        }
-        
     } else {
         [self registerForNotifications];
-        [self.currentLocationFinder startupForground];
+    }
+
+    [self initializeCurrentLocationFinder];
+    
+    if (USE_HIGH_POWER_LOCATIONS) {
+        [self.currentLocationFinder startupBackgroundHighPower];
+    } else {
+        [self.currentLocationFinder startupBackgroundLowPower];
     }
     
+    if (USE_ONBOARD_RECORDED_ACC) {
+        [self startOnboardRecordingOfAccelerations];
+    } else {
+        [self startAccelerationUpdates];
+        
+    }
+
     return YES;
 }
 
