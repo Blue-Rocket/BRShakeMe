@@ -69,7 +69,7 @@
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     if (status == kCLAuthorizationStatusAuthorizedAlways) {
         //
-        // About every 500 meters change or 5 minutes
+        // About every 500 meters change or 5 minutes says documentation
         //
         [_locationManager startMonitoringSignificantLocationChanges];
     }

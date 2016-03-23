@@ -10,6 +10,9 @@
 #import "CurrentLocationFinder.h"
 #import <CoreMotion/CoreMotion.h>
 
+static const BOOL USE_HIGH_POWER_LOCATIONS = NO;
+static const BOOL USE_ONBOARD_RECORDED_ACC = NO; // WatchOS only, but interesting possibility
+
 @interface AppDelegate () <CurrentLocationFinderDelegate>
     @property(nonatomic,strong) CurrentLocationFinder *currentLocationFinder;
     @property(nonatomic,strong) CMMotionManager *motionManager;
@@ -26,8 +29,8 @@
     //
     // 1. First initalization before restoring UI state
     //
-    _currentLocationFinder = [[CurrentLocationFinder alloc] init];
-    _currentLocationFinder.delegate = self;
+
+    [self initializeCurrentLocationFinder];
 
     return YES;
 }
@@ -35,10 +38,32 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //
-    // 2. Final initialization after restoring UI state
+    // 2. Final initialization after restoring UI state or launched from terminated state
     //
-    [self registerForNotifications];
-    [self.currentLocationFinder startupForground];
+
+    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
+        
+        NSString *notificationText = @"Terminated to Background";
+        [self scheduleNotificationWithString:notificationText];
+        
+        [self initializeCurrentLocationFinder];
+        
+        if (USE_HIGH_POWER_LOCATIONS) {
+            [self.currentLocationFinder startupBackgroundHighPower];
+        } else {
+            [self.currentLocationFinder startupBackgroundLowPower];
+        }
+        
+        if (USE_ONBOARD_RECORDED_ACC) {
+            [self startOnboardRecordingOfAccelerations];
+        } else {
+            [self startAccelerationUpdates];
+        }
+        
+    } else {
+        [self registerForNotifications];
+        [self.currentLocationFinder startupForground];
+    }
     
     return YES;
 }
@@ -48,9 +73,6 @@
     //
     // 1. Called before applicationDidBecomeActive
     //
-    if (self.motionManager) {
-        [self.motionManager stopAccelerometerUpdates];
-    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -69,9 +91,6 @@
     //
 }
 
-static const BOOL HIGH_POWER = YES;
-static const BOOL ONBOARD_RECORDED_ACC = NO;
-
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     //
@@ -86,24 +105,6 @@ static const BOOL ONBOARD_RECORDED_ACC = NO;
         //
         // Case of Awoken from Backgound
         //
-        NSString *notificationText = @"Suspended to Background";
-        [self scheduleNotificationWithString:notificationText];
-        
-        [self.currentLocationFinder tearDownLocationResources];
-
-        if (HIGH_POWER) {
-            [self.currentLocationFinder startupBackgroundHighPower];
-        } else {
-            [self.currentLocationFinder startupBackgroundLowPower];
-        }
-        
-        if (ONBOARD_RECORDED_ACC) {
-            [self startOnboardRecordingOfAccelerations];
-        } else {
-            [self startAccelerationUpdates];
-
-        }
-        
     } else if (appState == UIApplicationStateBackground) {
         //
         // Case of Foreground to Background
@@ -111,16 +112,15 @@ static const BOOL ONBOARD_RECORDED_ACC = NO;
         NSString *notificationText = @"Forground to Background";
         [self scheduleNotificationWithString:notificationText];
         
-        [self.currentLocationFinder tearDownLocationResources];
-        [self.currentLocationFinder tearDownLocationResources];
+        [self initializeCurrentLocationFinder];
         
-        if (HIGH_POWER) {
+        if (USE_HIGH_POWER_LOCATIONS) {
             [self.currentLocationFinder startupBackgroundHighPower];
         } else {
             [self.currentLocationFinder startupBackgroundLowPower];
         }
         
-        if (ONBOARD_RECORDED_ACC) {
+        if (USE_ONBOARD_RECORDED_ACC) {
             [self startOnboardRecordingOfAccelerations];
         } else {
             [self startAccelerationUpdates];
@@ -133,21 +133,26 @@ static const BOOL ONBOARD_RECORDED_ACC = NO;
 {
     NSString *notificationText = @"App was terminated";
     [self scheduleNotificationWithString:notificationText];
-    
-    [self.motionManager stopAccelerometerUpdates];
 }
 
 #pragma mark
 #pragma mark Location Services
 
-static const NSInteger secondsIn12Hours = 60*60*12;
+-(void)initializeCurrentLocationFinder
+{
+    if (self.currentLocationFinder != nil) {
+        [self.currentLocationFinder tearDownLocationResources];
+    }
+    self.currentLocationFinder = [[CurrentLocationFinder alloc] init];
+    self.currentLocationFinder.delegate = self;
+}
 
 -(void)newLocationObtained
 {
     NSString *notificationText = @"Location Found";
     [self scheduleNotificationWithString:notificationText];
     
-    if (ONBOARD_RECORDED_ACC) {
+    if (USE_ONBOARD_RECORDED_ACC) {
         [self processOnboardRecordedAccelerations];
     } else {
     }
@@ -156,26 +161,6 @@ static const NSInteger secondsIn12Hours = 60*60*12;
 -(void)newLocationNotObtained
 {
     
-}
-
--(void)registerForNotifications
-{
-    UIUserNotificationType types = (UIUserNotificationType) (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert);
-    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-}
-
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
-{
-    
-}
-
--(void)scheduleNotificationWithString:(NSString*)text
-{
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = nil;
-    localNotification.alertBody = text;
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 #pragma mark
@@ -198,8 +183,8 @@ static const NSInteger secondsIn12Hours = 60*60*12;
          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                         ^{
                             _numberOfAccelerations += 1;
-                            if (_numberOfLocations == 20) {
-                                _numberOfLocations = 0;
+                            if (_numberOfAccelerations == 40) {
+                                _numberOfAccelerations = 0;
                                 NSString *notificationText = [NSString stringWithFormat:@"Acceleration=%@",[data description]];
                                 [self scheduleNotificationWithString:notificationText];
                             }
@@ -208,40 +193,73 @@ static const NSInteger secondsIn12Hours = 60*60*12;
      ];
 }
 
--(void)startOnboardRecordingOfAccelerations
-{
-    self.sensorRecorder = [[CMSensorRecorder alloc] init];
-    [self.sensorRecorder recordAccelerometerForDuration:(secondsIn12Hours)];
-}
+static const NSInteger secondsIn12Hours = 60*60*12;
 
--(void)processOnboardRecordedAccelerations
+-(void)startOnboardRecordingOfAccelerations
 {
     if (self.sensorRecorder == nil) {
         self.sensorRecorder = [[CMSensorRecorder alloc] init];
     }
+    [self.sensorRecorder recordAccelerometerForDuration:(secondsIn12Hours / 2)]; // six hours
+}
+
+-(void)processOnboardRecordedAccelerations
+{
+    BOOL Available = [CMSensorRecorder isAccelerometerRecordingAvailable];
+    BOOL Authorized = [CMSensorRecorder isAuthorizedForRecording];
     
-    NSDate *now = [NSDate date];
-    NSDate *yesterday = [now dateByAddingTimeInterval:(-1*secondsIn12Hours / 2)]; // 6 hours
-    
-    CMSensorDataList *list = [self.sensorRecorder accelerometerDataFromDate:yesterday
-                                                                     toDate:now];
-    
-    if (list) {
-        NSInteger count = 0;
-        for (CMRecordedAccelerometerData* data in list) {
-            count = count + 1;
-            NSLog(@"%@",[data description]);
+    if (Available && Authorized) {
+        
+        if (self.sensorRecorder == nil) {
+            self.sensorRecorder = [[CMSensorRecorder alloc] init];
         }
+
+        NSDate *now = [NSDate date];
+        NSDate *yesterday = [now dateByAddingTimeInterval:(-1*secondsIn12Hours / 4)]; // 3 hours ago
         
-        NSString *notificationText = [NSString stringWithFormat:@"%i accelerations found", (int) count];
-        [self scheduleNotificationWithString:notificationText];
+        CMSensorDataList *list = [self.sensorRecorder accelerometerDataFromDate:yesterday
+                                                                         toDate:now];
         
-    } else {
-        
-        NSString *notificationText = @"No accelerations returned";
-        [self scheduleNotificationWithString:notificationText];
-        
+        if (list) {
+            NSInteger count = 0;
+            for (CMRecordedAccelerometerData* data in list) {
+                count = count + 1;
+                NSLog(@"%@",[data description]);
+            }
+            
+            NSString *notificationText = [NSString stringWithFormat:@"%i accelerations found", (int) count];
+            [self scheduleNotificationWithString:notificationText];
+            
+        } else {
+            
+            NSString *notificationText = @"No accelerations returned";
+            [self scheduleNotificationWithString:notificationText];
+            
+        }
     }
+}
+
+#pragma mark
+#pragma mark Notifications
+
+-(void)registerForNotifications
+{
+    UIUserNotificationType types = (UIUserNotificationType) (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert);
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    
+}
+
+-(void)scheduleNotificationWithString:(NSString*)text
+{
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = nil;
+    localNotification.alertBody = text;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 @end
