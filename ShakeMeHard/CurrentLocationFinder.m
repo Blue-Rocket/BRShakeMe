@@ -63,7 +63,7 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.allowsBackgroundLocationUpdates = YES;
-    self.locationManager.pausesLocationUpdatesAutomatically = NO;
+    self.locationManager.pausesLocationUpdatesAutomatically = YES; // Best set to no ...
     self.locationManager.activityType = CLActivityTypeFitness;
     
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
