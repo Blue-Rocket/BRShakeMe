@@ -20,4 +20,6 @@
 -(void)startupBackgroundLowPower;
 -(void)tearDownLocationResources;
 
+-(void)obtainPermissions;
+
 @end

@@ -95,6 +95,18 @@
     }
 }
 
+-(void)obtainPermissions
+{
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (status == kCLAuthorizationStatusAuthorizedAlways) {
+        return;
+    } else if (status == kCLAuthorizationStatusNotDetermined) {
+        [self.locationManager requestAlwaysAuthorization];
+    } else {
+        return;
+    }
+}
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     NSLog(@"New Location Obtained");

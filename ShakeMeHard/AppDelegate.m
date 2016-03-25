@@ -27,31 +27,36 @@ static const BOOL USE_ONBOARD_RECORDED_ACC = NO; // WatchOS only, but interestin
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //
-    // 1. First initalization before restoring UI state
+    // 1. First initalization before restoring UI state or launched from suspended state
     //
-
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //
-    // 2. Final initialization after restoring UI state or launched from terminated state
+    // 2. Final initialization after restoring UI state or launched from suspended state
     //
-
-    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
-        NSString *notificationText = @"Terminated to Background";
-        [self scheduleNotificationWithString:notificationText];
-    } else {
-        [self registerForNotifications];
-    }
-
     [self initializeCurrentLocationFinder];
     
-    if (USE_HIGH_POWER_LOCATIONS) {
-        [self.currentLocationFinder startupBackgroundHighPower];
+    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
+        
+        [self incrementNumberOfAwakeningsCount];
+        
+        NSString *notificationText = [NSString stringWithFormat:@"Awoken from suspended mode %d times", (int)[self numberOfSuspendedModeAwakenings]];
+        [self scheduleNotificationWithString:notificationText];
+        
+        if (USE_HIGH_POWER_LOCATIONS) {
+            [self.currentLocationFinder startupBackgroundHighPower];
+        } else {
+            [self.currentLocationFinder startupBackgroundLowPower];
+        }
+
     } else {
-        [self.currentLocationFinder startupBackgroundLowPower];
+        
+        [self.currentLocationFinder startupForground];
+        [self registerForNotifications];
+        
     }
     
     if (USE_ONBOARD_RECORDED_ACC) {
@@ -257,5 +262,35 @@ static const NSInteger secondsIn12Hours = 60*60*12;
     localNotification.alertBody = text;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
+
+#pragma mark
+#pragma mark User Defaults
+
+NSString *NUMBER_OF_AWAKENINGS = @"NumberOfAwakenings";
+
+-(void)resetUserDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:0 forKey:NUMBER_OF_AWAKENINGS];
+    [defaults synchronize];
+    [NSUserDefaults resetStandardUserDefaults];
+}
+
+-(NSInteger)numberOfSuspendedModeAwakenings
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults integerForKey:NUMBER_OF_AWAKENINGS];
+}
+
+-(void)incrementNumberOfAwakeningsCount
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger numberOfAwakenings = [defaults integerForKey:NUMBER_OF_AWAKENINGS];
+    numberOfAwakenings += 1;
+    NSLog(@"App awoken from suspended mode %d times", (int)numberOfAwakenings);
+    [defaults setInteger:numberOfAwakenings forKey:NUMBER_OF_AWAKENINGS];
+    [defaults synchronize];
+}
+
 
 @end
