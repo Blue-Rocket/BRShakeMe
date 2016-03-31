@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ShakeMeHard.xcodeproj">
+      location = "self:/Users/Jess/git/Development/ShakeMeHard/ShakeMeHard/BRShakeMe.xcodeproj">
    </FileRef>
 </Workspace>

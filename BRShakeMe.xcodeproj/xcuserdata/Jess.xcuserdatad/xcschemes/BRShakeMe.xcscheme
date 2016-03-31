@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8CF8A3B1C91FB3B00AB6C2E"
-               BuildableName = "ShakeMeHard.app"
-               BlueprintName = "ShakeMeHard"
-               ReferencedContainer = "container:ShakeMeHard.xcodeproj">
+               BuildableName = "BRShakeMe.app"
+               BlueprintName = "BRShakeMe"
+               ReferencedContainer = "container:BRShakeMe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8CF8A541C91FB3B00AB6C2E"
-               BuildableName = "ShakeMeHardTests.xctest"
-               BlueprintName = "ShakeMeHardTests"
-               ReferencedContainer = "container:ShakeMeHard.xcodeproj">
+               BuildableName = "BRShakeMe.xctest"
+               BlueprintName = "BRShakeMeTests"
+               ReferencedContainer = "container:BRShakeMe.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8CF8A5F1C91FB3B00AB6C2E"
-               BuildableName = "ShakeMeHardUITests.xctest"
-               BlueprintName = "ShakeMeHardUITests"
-               ReferencedContainer = "container:ShakeMeHard.xcodeproj">
+               BuildableName = "BRShakeMe.xctest"
+               BlueprintName = "BRShakeMeUITests"
+               ReferencedContainer = "container:BRShakeMe.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8CF8A3B1C91FB3B00AB6C2E"
-            BuildableName = "ShakeMeHard.app"
-            BlueprintName = "ShakeMeHard"
-            ReferencedContainer = "container:ShakeMeHard.xcodeproj">
+            BuildableName = "BRShakeMe.app"
+            BlueprintName = "BRShakeMe"
+            ReferencedContainer = "container:BRShakeMe.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8CF8A3B1C91FB3B00AB6C2E"
-            BuildableName = "ShakeMeHard.app"
-            BlueprintName = "ShakeMeHard"
-            ReferencedContainer = "container:ShakeMeHard.xcodeproj">
+            BuildableName = "BRShakeMe.app"
+            BlueprintName = "BRShakeMe"
+            ReferencedContainer = "container:BRShakeMe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8CF8A3B1C91FB3B00AB6C2E"
-            BuildableName = "ShakeMeHard.app"
-            BlueprintName = "ShakeMeHard"
-            ReferencedContainer = "container:ShakeMeHard.xcodeproj">
+            BuildableName = "BRShakeMe.app"
+            BlueprintName = "BRShakeMe"
+            ReferencedContainer = "container:BRShakeMe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

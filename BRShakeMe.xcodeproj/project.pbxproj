@@ -16,28 +16,11 @@
 		C8CF8A4F1C91FB3B00AB6C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8CF8A4D1C91FB3B00AB6C2E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C8CF8A561C91FB3B00AB6C2E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C8CF8A341C91FB3B00AB6C2E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C8CF8A3B1C91FB3B00AB6C2E;
-			remoteInfo = ShakeMeHard;
-		};
-		C8CF8A611C91FB3B00AB6C2E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C8CF8A341C91FB3B00AB6C2E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C8CF8A3B1C91FB3B00AB6C2E;
-			remoteInfo = ShakeMeHard;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		C861E2A71C9A479B0079C463 /* BRLocationFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLocationFinder.h; sourceTree = "<group>"; };
 		C861E2A81C9A479B0079C463 /* BRLocationFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRLocationFinder.m; sourceTree = "<group>"; };
 		C861E2A91C9A479B0079C463 /* BRLocationFinderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLocationFinderDelegate.h; sourceTree = "<group>"; };
-		C8CF8A3C1C91FB3B00AB6C2E /* ShakeMeHard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeMeHard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8CF8A3C1C91FB3B00AB6C2E /* BRShakeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRShakeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8CF8A401C91FB3B00AB6C2E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C8CF8A421C91FB3B00AB6C2E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C8CF8A431C91FB3B00AB6C2E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -47,26 +30,10 @@
 		C8CF8A4B1C91FB3B00AB6C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8CF8A4E1C91FB3B00AB6C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8CF8A501C91FB3B00AB6C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8CF8A551C91FB3B00AB6C2E /* ShakeMeHardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShakeMeHardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8CF8A601C91FB3B00AB6C2E /* ShakeMeHardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShakeMeHardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C8CF8A391C91FB3B00AB6C2E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C8CF8A521C91FB3B00AB6C2E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C8CF8A5D1C91FB3B00AB6C2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,9 +54,7 @@
 		C8CF8A3D1C91FB3B00AB6C2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C8CF8A3C1C91FB3B00AB6C2E /* ShakeMeHard.app */,
-				C8CF8A551C91FB3B00AB6C2E /* ShakeMeHardTests.xctest */,
-				C8CF8A601C91FB3B00AB6C2E /* ShakeMeHardUITests.xctest */,
+				C8CF8A3C1C91FB3B00AB6C2E /* BRShakeMe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,9 +90,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C8CF8A3B1C91FB3B00AB6C2E /* ShakeMeHard */ = {
+		C8CF8A3B1C91FB3B00AB6C2E /* BRShakeMe */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C8CF8A691C91FB3B00AB6C2E /* Build configuration list for PBXNativeTarget "ShakeMeHard" */;
+			buildConfigurationList = C8CF8A691C91FB3B00AB6C2E /* Build configuration list for PBXNativeTarget "BRShakeMe" */;
 			buildPhases = (
 				C8CF8A381C91FB3B00AB6C2E /* Sources */,
 				C8CF8A391C91FB3B00AB6C2E /* Frameworks */,
@@ -137,46 +102,10 @@
 			);
 			dependencies = (
 			);
-			name = ShakeMeHard;
+			name = BRShakeMe;
 			productName = ShakeMeHard;
-			productReference = C8CF8A3C1C91FB3B00AB6C2E /* ShakeMeHard.app */;
+			productReference = C8CF8A3C1C91FB3B00AB6C2E /* BRShakeMe.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C8CF8A541C91FB3B00AB6C2E /* ShakeMeHardTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C8CF8A6C1C91FB3B00AB6C2E /* Build configuration list for PBXNativeTarget "ShakeMeHardTests" */;
-			buildPhases = (
-				C8CF8A511C91FB3B00AB6C2E /* Sources */,
-				C8CF8A521C91FB3B00AB6C2E /* Frameworks */,
-				C8CF8A531C91FB3B00AB6C2E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C8CF8A571C91FB3B00AB6C2E /* PBXTargetDependency */,
-			);
-			name = ShakeMeHardTests;
-			productName = ShakeMeHardTests;
-			productReference = C8CF8A551C91FB3B00AB6C2E /* ShakeMeHardTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		C8CF8A5F1C91FB3B00AB6C2E /* ShakeMeHardUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C8CF8A6F1C91FB3B00AB6C2E /* Build configuration list for PBXNativeTarget "ShakeMeHardUITests" */;
-			buildPhases = (
-				C8CF8A5C1C91FB3B00AB6C2E /* Sources */,
-				C8CF8A5D1C91FB3B00AB6C2E /* Frameworks */,
-				C8CF8A5E1C91FB3B00AB6C2E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C8CF8A621C91FB3B00AB6C2E /* PBXTargetDependency */,
-			);
-			name = ShakeMeHardUITests;
-			productName = ShakeMeHardUITests;
-			productReference = C8CF8A601C91FB3B00AB6C2E /* ShakeMeHardUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -196,17 +125,9 @@
 							};
 						};
 					};
-					C8CF8A541C91FB3B00AB6C2E = {
-						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = C8CF8A3B1C91FB3B00AB6C2E;
-					};
-					C8CF8A5F1C91FB3B00AB6C2E = {
-						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = C8CF8A3B1C91FB3B00AB6C2E;
-					};
 				};
 			};
-			buildConfigurationList = C8CF8A371C91FB3B00AB6C2E /* Build configuration list for PBXProject "ShakeMeHard" */;
+			buildConfigurationList = C8CF8A371C91FB3B00AB6C2E /* Build configuration list for PBXProject "BRShakeMe" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -219,9 +140,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C8CF8A3B1C91FB3B00AB6C2E /* ShakeMeHard */,
-				C8CF8A541C91FB3B00AB6C2E /* ShakeMeHardTests */,
-				C8CF8A5F1C91FB3B00AB6C2E /* ShakeMeHardUITests */,
+				C8CF8A3B1C91FB3B00AB6C2E /* BRShakeMe */,
 			);
 		};
 /* End PBXProject section */
@@ -234,20 +153,6 @@
 				C8CF8A4F1C91FB3B00AB6C2E /* LaunchScreen.storyboard in Resources */,
 				C8CF8A4C1C91FB3B00AB6C2E /* Assets.xcassets in Resources */,
 				C8CF8A4A1C91FB3B00AB6C2E /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C8CF8A531C91FB3B00AB6C2E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C8CF8A5E1C91FB3B00AB6C2E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,34 +170,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C8CF8A511C91FB3B00AB6C2E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C8CF8A5C1C91FB3B00AB6C2E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C8CF8A571C91FB3B00AB6C2E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C8CF8A3B1C91FB3B00AB6C2E /* ShakeMeHard */;
-			targetProxy = C8CF8A561C91FB3B00AB6C2E /* PBXContainerItemProxy */;
-		};
-		C8CF8A621C91FB3B00AB6C2E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C8CF8A3B1C91FB3B00AB6C2E /* ShakeMeHard */;
-			targetProxy = C8CF8A611C91FB3B00AB6C2E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C8CF8A481C91FB3B00AB6C2E /* Main.storyboard */ = {
@@ -405,7 +283,7 @@
 				INFOPLIST_FILE = ShakeMeHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMe";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BRShakeMe;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -419,63 +297,15 @@
 				INFOPLIST_FILE = ShakeMeHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMe";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BRShakeMe;
 				PROVISIONING_PROFILE = "";
-			};
-			name = Release;
-		};
-		C8CF8A6D1C91FB3B00AB6C2E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ShakeMeHardTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMeHardTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShakeMeHard.app/ShakeMeHard";
-			};
-			name = Debug;
-		};
-		C8CF8A6E1C91FB3B00AB6C2E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ShakeMeHardTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMeHardTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShakeMeHard.app/ShakeMeHard";
-			};
-			name = Release;
-		};
-		C8CF8A701C91FB3B00AB6C2E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = ShakeMeHardUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMeHardUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = ShakeMeHard;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		C8CF8A711C91FB3B00AB6C2E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = ShakeMeHardUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMeHardUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = ShakeMeHard;
-				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C8CF8A371C91FB3B00AB6C2E /* Build configuration list for PBXProject "ShakeMeHard" */ = {
+		C8CF8A371C91FB3B00AB6C2E /* Build configuration list for PBXProject "BRShakeMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C8CF8A671C91FB3B00AB6C2E /* Debug */,
@@ -484,29 +314,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C8CF8A691C91FB3B00AB6C2E /* Build configuration list for PBXNativeTarget "ShakeMeHard" */ = {
+		C8CF8A691C91FB3B00AB6C2E /* Build configuration list for PBXNativeTarget "BRShakeMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C8CF8A6A1C91FB3B00AB6C2E /* Debug */,
 				C8CF8A6B1C91FB3B00AB6C2E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C8CF8A6C1C91FB3B00AB6C2E /* Build configuration list for PBXNativeTarget "ShakeMeHardTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C8CF8A6D1C91FB3B00AB6C2E /* Debug */,
-				C8CF8A6E1C91FB3B00AB6C2E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C8CF8A6F1C91FB3B00AB6C2E /* Build configuration list for PBXNativeTarget "ShakeMeHardUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C8CF8A701C91FB3B00AB6C2E /* Debug */,
-				C8CF8A711C91FB3B00AB6C2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
