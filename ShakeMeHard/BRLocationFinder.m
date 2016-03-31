@@ -1,20 +1,20 @@
 //
-//  CurrentLocationFinder.m
-//  eqglobe
+//  BRLocationFinder.m
+//  ShakeMe
 //
 //  Created by Jess on 4/2/15.
 //  Copyright (c) 2013 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 
-#import "CurrentLocationFinder.h"
+#import "BRLocationFinder.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface CurrentLocationFinder () <CLLocationManagerDelegate>
+@interface BRLocationFinder () <CLLocationManagerDelegate>
     @property (strong, nonatomic) CLLocationManager *locationManager;
     @property(nonatomic) BOOL eventsDifferred;
 @end
 
-@implementation CurrentLocationFinder
+@implementation BRLocationFinder
 
 - (id)init
 {

@@ -7,15 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C861E2AA1C9A479B0079C463 /* CurrentLocationFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = C861E2A81C9A479B0079C463 /* CurrentLocationFinder.m */; };
+		C861E2AA1C9A479B0079C463 /* BRLocationFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = C861E2A81C9A479B0079C463 /* BRLocationFinder.m */; };
 		C8CF8A411C91FB3B00AB6C2E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF8A401C91FB3B00AB6C2E /* main.m */; };
 		C8CF8A441C91FB3B00AB6C2E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF8A431C91FB3B00AB6C2E /* AppDelegate.m */; };
 		C8CF8A471C91FB3B00AB6C2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF8A461C91FB3B00AB6C2E /* ViewController.m */; };
 		C8CF8A4A1C91FB3B00AB6C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8CF8A481C91FB3B00AB6C2E /* Main.storyboard */; };
 		C8CF8A4C1C91FB3B00AB6C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8CF8A4B1C91FB3B00AB6C2E /* Assets.xcassets */; };
 		C8CF8A4F1C91FB3B00AB6C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8CF8A4D1C91FB3B00AB6C2E /* LaunchScreen.storyboard */; };
-		C8CF8A5A1C91FB3B00AB6C2E /* ShakeMeHardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF8A591C91FB3B00AB6C2E /* ShakeMeHardTests.m */; };
-		C8CF8A651C91FB3B00AB6C2E /* ShakeMeHardUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF8A641C91FB3B00AB6C2E /* ShakeMeHardUITests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C861E2A71C9A479B0079C463 /* CurrentLocationFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentLocationFinder.h; sourceTree = "<group>"; };
-		C861E2A81C9A479B0079C463 /* CurrentLocationFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentLocationFinder.m; sourceTree = "<group>"; };
-		C861E2A91C9A479B0079C463 /* CurrentLocationFinderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentLocationFinderDelegate.h; sourceTree = "<group>"; };
+		C861E2A71C9A479B0079C463 /* BRLocationFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLocationFinder.h; sourceTree = "<group>"; };
+		C861E2A81C9A479B0079C463 /* BRLocationFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRLocationFinder.m; sourceTree = "<group>"; };
+		C861E2A91C9A479B0079C463 /* BRLocationFinderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRLocationFinderDelegate.h; sourceTree = "<group>"; };
 		C8CF8A3C1C91FB3B00AB6C2E /* ShakeMeHard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeMeHard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8CF8A401C91FB3B00AB6C2E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C8CF8A421C91FB3B00AB6C2E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -50,11 +48,7 @@
 		C8CF8A4E1C91FB3B00AB6C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8CF8A501C91FB3B00AB6C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8CF8A551C91FB3B00AB6C2E /* ShakeMeHardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShakeMeHardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8CF8A591C91FB3B00AB6C2E /* ShakeMeHardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShakeMeHardTests.m; sourceTree = "<group>"; };
-		C8CF8A5B1C91FB3B00AB6C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8CF8A601C91FB3B00AB6C2E /* ShakeMeHardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShakeMeHardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8CF8A641C91FB3B00AB6C2E /* ShakeMeHardUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShakeMeHardUITests.m; sourceTree = "<group>"; };
-		C8CF8A661C91FB3B00AB6C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +79,7 @@
 		C8CF8A331C91FB3B00AB6C2E = {
 			isa = PBXGroup;
 			children = (
-				C8CF8A3E1C91FB3B00AB6C2E /* ShakeMeHard */,
-				C8CF8A581C91FB3B00AB6C2E /* ShakeMeHardTests */,
-				C8CF8A631C91FB3B00AB6C2E /* ShakeMeHardUITests */,
+				C8CF8A3E1C91FB3B00AB6C2E /* ShakeMe */,
 				C8CF8A3D1C91FB3B00AB6C2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,12 +94,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C8CF8A3E1C91FB3B00AB6C2E /* ShakeMeHard */ = {
+		C8CF8A3E1C91FB3B00AB6C2E /* ShakeMe */ = {
 			isa = PBXGroup;
 			children = (
-				C861E2A71C9A479B0079C463 /* CurrentLocationFinder.h */,
-				C861E2A81C9A479B0079C463 /* CurrentLocationFinder.m */,
-				C861E2A91C9A479B0079C463 /* CurrentLocationFinderDelegate.h */,
+				C861E2A71C9A479B0079C463 /* BRLocationFinder.h */,
+				C861E2A81C9A479B0079C463 /* BRLocationFinder.m */,
+				C861E2A91C9A479B0079C463 /* BRLocationFinderDelegate.h */,
 				C8CF8A421C91FB3B00AB6C2E /* AppDelegate.h */,
 				C8CF8A431C91FB3B00AB6C2E /* AppDelegate.m */,
 				C8CF8A451C91FB3B00AB6C2E /* ViewController.h */,
@@ -118,6 +110,7 @@
 				C8CF8A501C91FB3B00AB6C2E /* Info.plist */,
 				C8CF8A3F1C91FB3B00AB6C2E /* Supporting Files */,
 			);
+			name = ShakeMe;
 			path = ShakeMeHard;
 			sourceTree = "<group>";
 		};
@@ -127,24 +120,6 @@
 				C8CF8A401C91FB3B00AB6C2E /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C8CF8A581C91FB3B00AB6C2E /* ShakeMeHardTests */ = {
-			isa = PBXGroup;
-			children = (
-				C8CF8A591C91FB3B00AB6C2E /* ShakeMeHardTests.m */,
-				C8CF8A5B1C91FB3B00AB6C2E /* Info.plist */,
-			);
-			path = ShakeMeHardTests;
-			sourceTree = "<group>";
-		};
-		C8CF8A631C91FB3B00AB6C2E /* ShakeMeHardUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C8CF8A641C91FB3B00AB6C2E /* ShakeMeHardUITests.m */,
-				C8CF8A661C91FB3B00AB6C2E /* Info.plist */,
-			);
-			path = ShakeMeHardUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,7 +260,7 @@
 			files = (
 				C8CF8A471C91FB3B00AB6C2E /* ViewController.m in Sources */,
 				C8CF8A441C91FB3B00AB6C2E /* AppDelegate.m in Sources */,
-				C861E2AA1C9A479B0079C463 /* CurrentLocationFinder.m in Sources */,
+				C861E2AA1C9A479B0079C463 /* BRLocationFinder.m in Sources */,
 				C8CF8A411C91FB3B00AB6C2E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +269,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8CF8A5A1C91FB3B00AB6C2E /* ShakeMeHardTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +276,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8CF8A651C91FB3B00AB6C2E /* ShakeMeHardUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +404,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShakeMeHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMeHard";
+				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -445,7 +418,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShakeMeHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMeHard";
+				PRODUCT_BUNDLE_IDENTIFIER = "Blue-Rocket.ShakeMe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

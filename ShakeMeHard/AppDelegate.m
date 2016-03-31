@@ -1,20 +1,20 @@
 //
 //  AppDelegate.m
-//  ShakeMeHard
+//  ShakeMe
 //
 //  Created by Jess on 3/10/16.
 //  Copyright (c) 2013 Blue Rocket. Distributable under the terms of the Apache License, Version 2.0.
 //
 
 #import "AppDelegate.h"
-#import "CurrentLocationFinder.h"
+#import "BRLocationFinder.h"
 #import <CoreMotion/CoreMotion.h>
 
 static const BOOL USE_HIGH_POWER_LOCATIONS = NO;
 static const BOOL USE_ONBOARD_RECORDED_ACC = NO; // WatchOS only, but interesting possibility
 
-@interface AppDelegate () <CurrentLocationFinderDelegate>
-    @property(nonatomic,strong) CurrentLocationFinder *currentLocationFinder;
+@interface AppDelegate () <BRLocationFinderDelegate>
+    @property(nonatomic,strong) BRLocationFinder *currentLocationFinder;
     @property(nonatomic,strong) CMMotionManager *motionManager;
     @property(nonatomic,strong) CMSensorRecorder *sensorRecorder;
 
@@ -144,7 +144,7 @@ static const BOOL USE_ONBOARD_RECORDED_ACC = NO; // WatchOS only, but interestin
     if (self.currentLocationFinder != nil) {
         [self.currentLocationFinder tearDownLocationResources];
     }
-    self.currentLocationFinder = [[CurrentLocationFinder alloc] init];
+    self.currentLocationFinder = [[BRLocationFinder alloc] init];
     self.currentLocationFinder.delegate = self;
 }
 
