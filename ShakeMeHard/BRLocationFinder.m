@@ -63,7 +63,7 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.allowsBackgroundLocationUpdates = YES;
-    self.locationManager.pausesLocationUpdatesAutomatically = YES; // Best set to no ...
+    self.locationManager.pausesLocationUpdatesAutomatically = YES; // Set NO to be more aggressive
     self.locationManager.activityType = CLActivityTypeFitness;
     
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
@@ -149,7 +149,7 @@
 - (void)locationManager:(CLLocationManager *)manager didFinishDeferredUpdatesWithError:(NSError *)error
 {
     NSLog(@"Location Error: %@",[error description]);
-//    _eventsDifferred = NO;
+    _eventsDifferred = NO;
 //    [self setupDefferedEvents];
 }
 
@@ -159,7 +159,8 @@
         return;
     } else {
         //
-        // Does not work in debug mode, device needs to power down for it to work.
+        // Note: Does not work in debug mode, device needs to power down for it to work.
+        //
         // TODO: Add as a refinement later
         //
         _eventsDifferred = YES;
