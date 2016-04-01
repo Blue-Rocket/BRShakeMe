@@ -16,7 +16,9 @@ When an app is running in the foreground, accelerations can be obtained continuo
 
 This code shows one way to extend the access to accelerations over time using location updates. Location updates can be configured to wake a suspended app periodically, for a short period of time, and during that time, the code proves accelerations can be obtained and analyzed. Using this approach, the timing of the "wake up" calls is not deterministic and varies in its frequency. If the user is moving about, the location updates happen more frequently, and when the user is at rest, they occurr mush less frequently.
 
-The code can be configured to vary the aggressiveness of the location update settings. The least aggressive approach, meaning having the least impact on the iPhone resources, corresponds to the behavior I just described in the preceding paragraph. A more aggressive approach keeps the app in the background (non suspended) much longer, which provides much better monitoring facilities over time, but does task device resources harder.
+The code can be configured to vary the aggressiveness of the location update settings. The least aggressive approach, meaning having the least impact on the iPhone resources, corresponds to the behavior I just described in the preceding paragraph. 
+
+A more aggressive approach keeps the app in the background (non-suspended) much longer, which greatly extends the monitoring time, but does task device resources harder (refer to the USE_HIGH_POWER_LOCATIONS constant in the app delegate).
 
 
 
