@@ -2,7 +2,7 @@
 BRShakeMe: Introduction
 =======================
 
-This code is motivated by a problem is seismology whereby accelerations recorded on a smartphone can be used to detect if an earthquake is occurring in real time (or has occurred). This has great implications for early warning systems as even a few seconds early warning is valuable to disaster response coordinators.
+This code is motivated by a problem in seismology whereby accelerations recorded on a smartphone can be used to detect if an earthquake is occurring in real time (or has occurred). This has great implications for early warning systems as even a few seconds early warning is valuable to disaster response coordinators.
 
 In an ideal world, accelerations would be recorded and analyzed continuously on the smartphone without unduly draining its resources and without interferring with the smartphone users normal activities. Using standard Apple API's we know this ideal cannot be realized in its entirty on an iPhone. This code represents an experiment to begin to determine how close to the ideal we can come.
 
